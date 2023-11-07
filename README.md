@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+// I have used class User to define the two major variables : username and pswd
 class User
 {
 private:
@@ -10,16 +12,16 @@ private:
 
 public:
     User(const std::string &username, const std::string &password)
-        : username(username), password(password)
+        : username(username), password(password)  // setting the provided username and pswd
     {
     }
 
-    const std::string &getUsername() const
+    const std::string &showUsername() const
     {
         return username;
     }
 
-    const std::string &getPassword() const
+    const std::string &showPassword() const
     {
         return password;
     }
@@ -36,11 +38,7 @@ public:
     {
     }
 
-    double getBalance() const
-    {
-        return balance;
-    }
-
+ 
     void deposit(double amount)
     {
         balance += amount;
@@ -56,6 +54,11 @@ public:
             cout<<"Not enough balance";
         }
     }
+       double getBalance() const
+    {
+        return balance;
+    }
+
 };
 
 class ATM
@@ -66,7 +69,14 @@ private:
 public:
     void addUser(const User &user)
     {
-        users[user.getUsername()] = user;
+        users[user.showUsername()] = user;
+    }
+    bool authenticateUser(const std::string& username, const std::string& password) {
+        auto it = users.find(username);
+        if (it != users.end() && it->second.showPassword() == password) {
+            return true;
+        }
+        return false;
     }
 
 
@@ -81,6 +91,7 @@ public:
 
     int main()
     {
+    
 
         return 0;
     }
