@@ -1,0 +1,49 @@
+
+class ATM
+{
+private:
+    unordered_map<string, User> users;
+
+public:
+    void addUser(const User &user)
+    {
+        users[user.showUsername()] = user;
+    }
+    bool authenticateUser(const std::string &username, const std::string &password)
+    {
+        auto it = users.find(username);
+        if (it != users.end() && it->second.showPassword() == password)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // FUnction for depositing money into the user's account
+    bool depositMoney(const std::string& username, double amount) {
+        auto it = users.find(username);
+        if (it != users.end()) {
+            it->second.getAccount().deposit(amount);
+            return true;
+        }
+        return false;
+    }
+    
+    // Function for withdrawing money from the user's account
+    bool withdrawMoney(const std::string& username, double amount) {
+        auto it = users.find(username);
+        if (it != users.end()) {
+            return it->second.getAccount().withdraw(amount);
+        }
+        return false;
+    }
+    
+    // FUnction for checking the balance of the user's account
+    double checkBalance(const std::string& username) {
+        auto it = users.find(username);
+        if (it != users.end()) {
+            return it->second.getAccount().getBalance();
+        }
+        return 0.0; // User not found
+}
+};
