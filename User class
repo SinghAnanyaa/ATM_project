@@ -1,0 +1,22 @@
+class User
+{
+private:
+    std::string username;
+    std::string password;
+
+public:
+    User(const std::string &username, const std::string &password)
+        : username(username), password(password) //For setting the provided username and password
+    {
+    }
+
+    const std::string &showUsername() const
+    {
+        return username;
+    }
+
+    const std::string &showPassword() const
+    {
+        return password;
+    }
+};
