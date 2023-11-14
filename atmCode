@@ -1,7 +1,17 @@
+int main() {
+    ATM atm;
+     
 
 
-    int main()
-    {
-
-        return 0;
+    // For authenticating users
+    if (atm.authenticateUser("user1", "password1")) {
+     
+        if (atm.depositMoney("user1", 100.0)) {
+            std::cout << "Deposit successful.\n";
+        }
     }
+
+   
+
+    return 0;
+}
