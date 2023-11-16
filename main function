@@ -1,5 +1,7 @@
 int main() {
     ATM atm;
+    cin>>"Hello! Please choose for what purpose you are using this ATM : "<<endl;
+    
      
 
 
