@@ -44,6 +44,6 @@ public:
         if (it != users.end()) {
             return it->second.getAccount().getBalance();
         }
-        return 0.0; // User not found
+        return 0; // User not found
 }
 };
