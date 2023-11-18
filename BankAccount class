@@ -10,26 +10,23 @@ public:
     {
     }
 
-  
+    double getBalance() const
+    {
+        return balance;
+    }
 
     void deposit(double amount)
     {
         balance += amount;
     }
 
-    void withdraw(double amount)
+    bool withdraw(double amount)
     {
         if (amount <= balance)
         {
             balance -= amount;
-            cout<<"Amount withdrawn : "<<amount;
-        }else{
-            cout<<"Not enough balance";
+            return true;
         }
-    }
-
-  double showBalance() const
-    {
-        return balance;
+        return false;
     }
 };
