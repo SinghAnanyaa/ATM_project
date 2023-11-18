@@ -3,20 +3,57 @@ class User
 private:
     std::string username;
     std::string password;
+    BankAccount account;
 
 public:
+    std::unordered_map<std::string, User> users;
+
     User(const std::string &username, const std::string &password)
-        : username(username), password(password) //For setting the provided username and password
+        : username(username), password(password)
     {
     }
 
-    const std::string &showUsername() const
+    const std::string &getUsername() const
     {
         return username;
     }
 
-    const std::string &showPassword() const
+    const std::string &getPassword() const
     {
         return password;
+    }
+
+    BankAccount &getAccount()
+    {
+        return account; // Returns the Bankaccount object
+    }
+
+    // Add a new user to the ATM system
+    void addUser(const std::string &username, const std::string &password)
+    {
+        // Set up an empty account for the new user
+        users[username] = User(username, password);
+    }
+
+    // Authenticate a user based on their username and password
+    bool authenticateUser(const std::string &username, const std::string &password)
+    {
+        auto it = users.find(username);
+        return it != users.end() && it->second.getPassword() == password;
+    }
+
+    void depositMoney(double amount)
+    {
+        account.deposit(amount);
+    }
+
+    bool withdrawMoney(double amount)
+    {
+        return account.withdraw(amount);
+    }
+
+    double checkBalance() const
+    {
+        return account.getBalance();
     }
 };
